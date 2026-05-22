@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYGNAL PRO | Betting Exchange Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'JetBrains+Mono', monospace; }
+        .glass { background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .input-pro { background: #050505; border: 1px solid #222; color: #fbbf24; padding: 12px; border-radius: 8px; width: 100%; transition: 0.3s; }
+        .input-pro:focus { border-color: #fbbf24; box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); outline: none; }
+        .badge-alpha { background: linear-gradient(90deg, #1e40af, #3b82f6); }
+        .badge-beta { background: linear-gradient(90deg, #991b1b, #ef4444); }
+    </style>
+</head>
+<body class="bg-[#050505] text-gray-300 min-h-screen">
+
+    <div class="container mx-auto px-4 py-10 max-w-6xl">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-gray-800 pb-6">
+            <div class="text-center md:text-left mb-6 md:mb-0">
+                <h1 class="text-5xl font-black text-yellow-500 italic tracking-tighter">SYGNAL <span class="text-white">PRO</span></h1>
+                <p class="text-[10px] uppercase tracking-[0.5em] text-gray-500 mt-2 text-glow">Professional Trading Engine v2.4</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass p-3 rounded-xl text-center">
+                    <p class="text-[10px] text-gray-500">SERVER STATUS</p>
+                    <p class="text-green-500 font-bold text-xs uppercase" id="status">Ready</p>
+                </div>
+                <div class="glass p-3 rounded-xl text-center">
+                    <p class="text-[10px] text-gray-500">SCANNING MODE</p>
+                    <p class="text-blue-500 font-bold text-xs uppercase">Multi-Language</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Configuration Mask -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- API Settings -->
+            <div class="glass p-6 rounded-2xl">
+                <h2 class="text-yellow-500 text-sm font-bold mb-6 flex items-center">
+                    <span class="mr-2">🔑</span> API CREDENTIALS
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[9px] text-gray-600 block mb-1">THE ODDS API KEY</label>
+                        <input type="password" id="key_odds" class="input-pro text-sm" placeholder="••••••••••••">
+                    </div>
+                    <div>
+                        <label class="text-[9px] text-gray-600 block mb-1">API-FOOTBALL KEY (RapidAPI)</label>
+                        <input type="password" id="key_football" class="input-pro text-sm" placeholder="••••••••••••">
+                    </div>
+                    <div>
+                        <label class="text-[9px] text-gray-600 block mb-1">TELEGRAM BOT TOKEN</label>
+                        <input type="password" id="bot_token" class="input-pro text-sm" placeholder="000000:AAHH...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Channel Mapping -->
+            <div class="lg:col-span-2 glass p-6 rounded-2xl">
+                <h2 class="text-blue-500 text-sm font-bold mb-6 flex items-center">
+                    <span class="mr-2">📡</span> MULTI-LANGUAGE BROADCAST (CHANNEL IDs)
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[9px] font-bold text-green-600 block mb-1 underline">🇮🇹 ITALIANO</label>
+                            <input type="text" id="ch_it" class="input-pro text-sm border-green-900/30" placeholder="-100123456789">
+                        </div>
+                        <div>
+                            <label class="text-[9px] font-bold text-blue-600 block mb-1 underline">🇬🇧 ENGLISH</label>
+                            <input type="text" id="ch_en" class="input-pro text-sm border-blue-900/30" placeholder="-100123456789">
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-[9px] font-bold text-red-600 block mb-1 underline">🇪🇸 ESPAÑOL</label>
+                            <input type="text" id="ch_es" class="input-pro text-sm border-red-900/30" placeholder="-100123456789">
+                        </div>
+                        <div>
+                            <label class="text-[9px] font-bold text-yellow-600 block mb-1 underline">🇵🇹 PORTUGUÊS</label>
+                            <input type="text" id="ch_pt" class="input-pro text-sm border-yellow-900/30" placeholder="-100123456789">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="startEngine()" class="lg:col-span-3 bg-yellow-600 hover:bg-yellow-500 text-black font-black py-4 rounded-xl text-lg uppercase tracking-[0.2em] transition-all transform hover:scale-[1.01] shadow-xl shadow-yellow-900/20">
+                Lancia Algoritmi & Global Distribution
+            </button>
+        </section>
+
+        <!-- Stats & Strategy Preview -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass p-6 rounded-2xl border-l-4 border-blue-600">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="font-bold text-blue-400">ALFA SIGNALS</h3>
+                    <span class="badge-alpha text-[8px] px-2 py-0.5 rounded italic">Institutional</span>
+                </div>
+                <ul class="text-[10px] space-y-3 uppercase text-gray-500">
+                    <li class="flex justify-between"><span>Weight of Money (WoM)</span> <span class="text-white">Active</span></li>
+                    <li class="flex justify-between"><span>Pre-Match Scalping</span> <span class="text-white">Active</span></li>
+                    <li class="flex justify-between"><span>Lay The Draw Elite</span> <span class="text-white">Active</span></li>
+                </ul>
+            </div>
+            
+            <div class="glass p-6 rounded-2xl border-l-4 border-red-600">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="font-bold text-red-500">BETA SIGNALS</h3>
+                    <span class="badge-beta text-[8px] px-2 py-0.5 rounded italic">Retail</span>
+                </div>
+                <ul class="text-[10px] space-y-3 uppercase text-gray-500">
+                    <li class="flex justify-between"><span>Dutching Correct Score</span> <span class="text-white">Active</span></li>
+                    <li class="flex justify-between"><span>In-Play Time Decay</span> <span class="text-white">Active</span></li>
+                    <li class="flex justify-between"><span>Black Swan Detection</span> <span class="text-white">Active</span></li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- Terminal Logs -->
+        <div class="mt-12 glass rounded-2xl p-4 overflow-hidden">
+            <div class="flex items-center space-x-2 mb-2 border-b border-gray-800 pb-2">
+                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span class="text-[10px] text-gray-600 ml-4 font-bold">LOG_CONSOLE_OUTPUT</span>
+            </div>
+            <div id="logs" class="text-[10px] font-mono text-green-800 h-32 overflow-y-auto space-y-1">
+                > Sistema pronto. Inserire chiavi API per iniziare...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addLog(msg, color='green-800') {
+            const logs = document.getElementById('logs');
+            const now = new Date().toISOString();
+            logs.innerHTML += `<p class="text-${color}">[${now}] > ${msg}</p>`;
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function startEngine() {
+            const keys = ['key_odds', 'key_football', 'bot_token', 'ch_it', 'ch_en', 'ch_es', 'ch_pt'];
+            const values = {};
+            
+            keys.forEach(k => {
+                values[k] = document.getElementById(k).value;
+            });
+
+            if(!values.bot_token || !values.key_odds) {
+                addLog("ERRORE: Chiavi API o Token mancanti!", "red-500");
+                return;
+            }
+
+            document.getElementById('status').innerText = "Running";
+            document.getElementById('status').className = "text-yellow-500 font-bold text-xs uppercase animate-pulse";
+            
+            addLog("Inizializzazione Trading Engine...");
+            addLog("Scanning palinsesto via API-Football...", "blue-500");
+            addLog("Calcolo volumi Exchange via The Odds API...", "blue-500");
+            addLog("Broadcasting in 4 lingue attivato.", "yellow-500");
+            
+            // Simulazione generazione segnale in background
+            setTimeout(() => {
+                addLog("🚨 RILEVATO SEGNALE ALFA: Inter vs Milan (Scalping Pre-Match)", "white font-bold");
+                addLog("Inviando traduzioni a 4 canali...", "gray-500");
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
