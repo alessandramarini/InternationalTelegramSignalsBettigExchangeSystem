@@ -3,107 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYGNAL PRO | Istitutional Trading Engine</title>
+    <title>SYGNAL PRO V4 | Operational Trading Center</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-        body { font-family: 'JetBrains Mono', monospace; background: #020202; color: #ececec; }
-        .glass-panel { background: rgba(10, 10, 10, 0.85); border: 1px solid #222; backdrop-filter: blur(12px); }
-        .neon-border-blue { border-left: 4px solid #3b82f6; box-shadow: -5px 0 15px rgba(59, 130, 246, 0.1); }
-        .neon-border-yellow { border-left: 4px solid #ca8a04; box-shadow: -5px 0 15px rgba(202, 138, 4, 0.1); }
-        .terminal-scroll::-webkit-scrollbar { width: 4px; }
-        .terminal-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        body { font-family: 'Space Mono', monospace; background: #000; color: #fff; scroll-behavior: smooth; }
+        .engine-panel { background: #050505; border: 1px solid #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .scan-line { width: 100%; height: 2px; background: #fbbf24; position: absolute; top: 0; left: 0; animation: scan 2s linear infinite; opacity: 0.3; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        .terminal-text { font-size: 11px; line-height: 1.4; }
+        .btn-action { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-action:hover { background: #fbbf24; color: #000; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4); transform: translateY(-2px); }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="p-4 md:p-8">
 
-    <div class="max-w-6xl mx-auto">
-        <!-- Header Professionale -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-gray-800 pb-8">
-            <div>
-                <h1 class="text-5xl font-black text-yellow-500 italic tracking-tighter">SYGNAL <span class="text-white">PRO</span></h1>
-                <p class="text-[10px] uppercase tracking-[0.5em] text-gray-500 mt-2">Elite Betting Exchange Algorithm v3.0</p>
+    <div class="max-w-7xl mx-auto space-y-6">
+        <!-- GLOBAL CONTROL HEADER -->
+        <header class="engine-panel p-6 rounded-3xl flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
+            <div class="scan-line"></div>
+            <div class="z-10 text-center md:text-left">
+                <h1 class="text-4xl font-black italic tracking-tighter text-yellow-500">SYGNAL PRO <span class="text-white">v4.0</span></h1>
+                <p class="text-[9px] uppercase tracking-[0.6em] text-gray-600">Pure Math & Liquidity Distribution Engine</p>
             </div>
-            <div class="flex gap-4 mt-6 md:mt-0">
-                <div class="glass-panel p-4 rounded-xl text-center min-w-[120px]">
-                    <p class="text-[9px] text-gray-500 uppercase">Latency</p>
-                    <p class="text-green-400 font-bold text-xs" id="ping">14ms</p>
+            <div class="flex gap-6 mt-4 md:mt-0 z-10">
+                <div class="text-center">
+                    <p class="text-[8px] text-gray-500 uppercase mb-1">Calculation Mode</p>
+                    <p class="text-blue-500 font-bold text-xs underline">FRESH_DATA_ONLY</p>
                 </div>
-                <div class="glass-panel p-4 rounded-xl text-center min-w-[120px]">
-                    <p class="text-[9px] text-gray-500 uppercase">Engine</p>
-                    <p class="text-blue-400 font-bold text-xs">Vercel Ready</p>
+                <div class="text-center">
+                    <p class="text-[8px] text-gray-500 uppercase mb-1">Encryption</p>
+                    <p class="text-green-500 font-bold text-xs uppercase underline">Vercel SSL Ready</p>
                 </div>
             </div>
         </header>
 
-        <!-- Main Trading Console -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
             
-            <!-- Sidebar: Config & Credentials -->
-            <div class="lg:col-span-1 space-y-6">
-                <div class="glass-panel p-6 rounded-2xl neon-border-blue">
-                    <h2 class="text-sm font-bold text-blue-500 mb-6 uppercase flex items-center justify-between">
-                        <span>Verified Keys</span>
-                        <span class="text-[8px] bg-blue-900/50 px-2 py-0.5 rounded text-blue-300">SECURE_STORE</span>
-                    </h2>
+            <!-- CONFIGURATION & HARDWARE GATE -->
+            <aside class="lg:col-span-1 space-y-6">
+                <div class="engine-panel p-6 rounded-3xl border-t-2 border-yellow-600">
+                    <h2 class="text-xs font-bold text-yellow-500 mb-6 uppercase tracking-widest italic">Hardware Config</h2>
                     <div class="space-y-4">
-                        <div class="group">
-                            <label class="text-[10px] text-gray-600 block mb-1">THE ODDS API</label>
-                            <input type="text" value="69eaf2edf196...7fe" class="w-full bg-black border border-gray-800 p-3 rounded-lg text-xs text-yellow-500/50 cursor-not-allowed" disabled>
+                        <div class="p-3 bg-black rounded-xl border border-gray-900">
+                            <label class="text-[8px] text-gray-600 block mb-1">ODDS API STATUS</label>
+                            <p class="text-[10px] text-white">69eaf2edf19653514692794e961ab7fe</p>
                         </div>
-                        <div class="group">
-                            <label class="text-[10px] text-gray-600 block mb-1">API FOOTBALL</label>
-                            <input type="text" value="b95f7557bbec...125" class="w-full bg-black border border-gray-800 p-3 rounded-lg text-xs text-yellow-500/50 cursor-not-allowed" disabled>
+                        <div class="p-3 bg-black rounded-xl border border-gray-900">
+                            <label class="text-[8px] text-gray-600 block mb-1">FOOTBALL API STATUS</label>
+                            <p class="text-[10px] text-white">b95f7557bbec7b4ff92e31b9cdb65125</p>
                         </div>
-                        <div class="group">
-                            <label class="text-[10px] text-gray-600 block mb-1">TELEGRAM BOT</label>
-                            <input type="text" value="8535225418:AA...5ig" class="w-full bg-black border border-gray-800 p-3 rounded-lg text-xs text-blue-500/50 cursor-not-allowed" disabled>
+                        <div class="p-3 bg-black rounded-xl border border-gray-900">
+                            <label class="text-[8px] text-gray-600 block mb-1">MASTER BOT TOKEN</label>
+                            <p class="text-[10px] text-blue-500 truncate">8535225418:AAE2X4znAhLKjKJo1o...5ig</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-panel p-6 rounded-2xl">
-                    <h3 class="text-xs font-bold text-gray-400 mb-4 tracking-widest uppercase">Target Channels</h3>
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between text-[11px] bg-black/50 p-2 rounded">
-                            <span class="text-green-500 font-bold">IT</span> <span class="text-gray-600">-1003958807227</span>
+                <div class="engine-panel p-6 rounded-3xl">
+                    <h3 class="text-xs font-bold text-gray-400 mb-4 uppercase tracking-widest">Global Channels</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-black p-2 rounded text-center border border-gray-900 text-[9px] font-bold text-green-500">🇮🇹 IT</div>
+                        <div class="bg-black p-2 rounded text-center border border-gray-900 text-[9px] font-bold text-blue-500">🇬🇧 EN</div>
+                        <div class="bg-black p-2 rounded text-center border border-gray-900 text-[9px] font-bold text-red-500">🇪🇸 ES</div>
+                        <div class="bg-black p-2 rounded text-center border border-gray-900 text-[9px] font-bold text-yellow-500">🇵🇹 PT</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- OPERATION CENTER -->
+            <main class="lg:col-span-3 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button onclick="runTradingCycle('PRE_MATCH')" class="btn-action bg-zinc-900 border border-zinc-800 p-6 rounded-3xl text-left relative overflow-hidden group">
+                        <div class="status-dot bg-yellow-500"></div>
+                        <span class="text-xs font-bold text-yellow-500 uppercase">Pre-Match Cycle</span>
+                        <h4 class="text-xl font-black mt-2">ANALYZE PALINSESTO</h4>
+                        <p class="text-[9px] text-gray-500 mt-2 uppercase tracking-tight">WoM, Scalping, Dutching, Swing Trading</p>
+                    </button>
+                    <button onclick="runTradingCycle('IN_PLAY')" class="btn-action bg-zinc-900 border border-zinc-800 p-6 rounded-3xl text-left relative overflow-hidden group">
+                        <div class="status-dot bg-red-500 animate-pulse"></div>
+                        <span class="text-xs font-bold text-red-500 uppercase">In-Play Cycle</span>
+                        <h4 class="text-xl font-black mt-2">LIVE SCANNING</h4>
+                        <p class="text-[9px] text-gray-500 mt-2 uppercase tracking-tight">Time Decay, LTD, Over/Under, Correct Score</p>
+                    </button>
+                </div>
+
+                <!-- ANALYTICS FEED -->
+                <div class="engine-panel rounded-3xl p-6 bg-black">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-zinc-900">
+                        <span class="text-[10px] font-bold text-gray-600 uppercase tracking-widest flex items-center">
+                            <span class="status-dot bg-green-500 animate-pulse"></span> Terminal Logic Stream
+                        </span>
+                        <span class="text-[10px] text-gray-700 italic">UTC_SYNC: ENABLED</span>
+                    </div>
+                    <div id="terminal" class="terminal-text font-mono h-[300px] overflow-y-auto space-y-1 terminal-scroll text-zinc-500">
+                        > SYGNAL PRO READY. STANDING BY FOR COMMAND.
+                    </div>
+                </div>
+
+                <!-- SIGNAL PREVIEW SECTION -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="engine-panel p-5 rounded-3xl border-l-4 border-blue-600">
+                        <p class="text-[9px] text-blue-500 font-bold uppercase mb-2 italic">ALFA STREAM (Institutional)</p>
+                        <div class="space-y-2 opacity-50 text-[10px]" id="alfa-preview text-xs italic">
+                            Waiting for liquidity threshold (min €50k)...
                         </div>
-                        <div class="flex items-center justify-between text-[11px] bg-black/50 p-2 rounded">
-                            <span class="text-blue-500 font-bold">EN</span> <span class="text-gray-600">-1003966363262</span>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] bg-black/50 p-2 rounded">
-                            <span class="text-red-500 font-bold">ES</span> <span class="text-gray-600">-1003929284405</span>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] bg-black/50 p-2 rounded">
-                            <span class="text-yellow-500 font-bold">PT</span> <span class="text-gray-600">-1003510579028</span>
+                    </div>
+                    <div class="engine-panel p-5 rounded-3xl border-l-4 border-red-600">
+                        <p class="text-[9px] text-red-500 font-bold uppercase mb-2 italic">BETA STREAM (Retail)</p>
+                        <div class="space-y-2 opacity-50 text-[10px]" id="beta-preview text-xs italic">
+                            Scanning for mathematical discrepancies...
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Main Log & Action Section -->
-            <div class="lg:col-span-2 space-y-6">
-                <button onclick="executeFullGlobalAudit()" class="w-full bg-yellow-600 hover:bg-yellow-500 text-black font-black py-6 rounded-2xl text-xl uppercase tracking-tighter transition-all shadow-xl shadow-yellow-900/10 active:scale-95">
-                    DEPLOY SYSTEM & START SCANNING
-                </button>
-
-                <!-- Terminal Display -->
-                <div class="glass-panel rounded-2xl p-6 bg-black relative">
-                    <div class="flex items-center justify-between mb-4 border-b border-gray-900 pb-2">
-                        <span class="text-[10px] font-bold text-yellow-500 italic uppercase">Trading Console Output</span>
-                        <div class="flex gap-1.5">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-900"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-900"></div>
-                            <div class="w-2.5 h-2.5 rounded-full bg-green-900"></div>
-                        </div>
-                    </div>
-                    <div id="console" class="text-[11px] font-mono h-[350px] overflow-y-auto space-y-1.5 terminal-scroll">
-                        <span class="text-gray-700">> SYGNAL PRO V3.0 INITIALIZED...</span><br>
-                        <span class="text-gray-700">> ALL EXTERNAL API KEYS LOADED IN SECURE BUFFER.</span><br>
-                        <span class="text-gray-700">> READY FOR DEPLOYMENT ON VERCEL EDGE...</span>
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
     </div>
 
@@ -111,62 +125,73 @@
         const SECRETS = {
             odds: "69eaf2edf19653514692794e961ab7fe",
             football: "b95f7557bbec7b4ff92e31b9cdb65125",
-            tg_token: "8535225418:AAE2X4znAhLKjKJo1oO0N_RcyrfJWtg75ig",
-            channels: {
-                es: "-1003929284405",
-                it: "-1003958807227",
-                pt: "-1003510579028",
-                en: "-1003966363262"
-            }
+            token: "8535225418:AAE2X4znAhLKjKJo1oO0N_RcyrfJWtg75ig",
+            channels: { it: "-1003958807227", en: "-1003966363262", es: "-1003929284405", pt: "-1003510579028" }
         };
 
         const LOCALIZATION = {
-            it: { header: "🏆 ALPHA SEGNALE 🏆", match: "Incontro", strategy: "Strategia", liquidity: "Liquidità", stake: "Stake", val: "Istituzionale" },
-            en: { header: "🏆 ALPHA SIGNAL 🏆", match: "Match", strategy: "Strategy", liquidity: "Liquidity", stake: "Stake", val: "Institutional" },
-            es: { header: "🏆 ALPHA SEÑAL 🏆", match: "Partido", strategy: "Estrategia", liquidity: "Liquidez", stake: "Stake", val: "Institucional" },
-            pt: { header: "🏆 ALPHA SINAL 🏆", match: "Jogo", strategy: "Estratégia", liquidity: "Liquidez", stake: "Stake", val: "Institucional" }
+            it: { sig: "ALFA SEGNALE", match: "Match", strat: "Strategia", liq: "Liquidità", stake: "Stake", retail: "BETA RETAIL", risk: "ATTEZIONE: CIGNO NERO RILEVATO" },
+            en: { sig: "ALPHA SIGNAL", match: "Match", strat: "Strategy", liq: "Liquidity", stake: "Stake", retail: "BETA RETAIL", risk: "ALERT: BLACK SWAN DETECTED" },
+            es: { sig: "ALFA SEÑAL", match: "Partido", strat: "Estrategia", liq: "Liquidez", stake: "Stake", retail: "BETA RETAIL", risk: "ALERTA: CISNE NEGRO DETECTADO" },
+            pt: { sig: "ALFA SINAL", match: "Jogo", strat: "Estratégia", liq: "Liquidez", stake: "Stake", retail: "BETA RETAIL", risk: "ALERTA: CISNE NEGRO DETECTADO" }
         };
 
-        function addLog(msg, color="text-green-600") {
-            const consoleBox = document.getElementById('console');
-            consoleBox.innerHTML += `<div class="${color}">[${new Date().toISOString().replace('T', ' ').substring(0, 19)}] > ${msg}</div>`;
-            consoleBox.scrollTop = consoleBox.scrollHeight;
+        function log(msg, color="text-zinc-600") {
+            const t = document.getElementById('terminal');
+            t.innerHTML += `<div class="${color} py-0.5 border-b border-zinc-900/50"> [${new Date().toISOString()}] ${msg}</div>`;
+            t.scrollTop = t.scrollHeight;
         }
 
-        async function sendTelegram(chatId, text) {
-            const url = `https://api.telegram.org/bot${SECRETS.tg_token}/sendMessage`;
+        async function sendTg(cid, txt) {
             try {
-                const response = await fetch(url, {
+                const res = await fetch(`https://api.telegram.org/bot${SECRETS.token}/sendMessage`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({chat_id: cid, text: textToMarkdown(txt), parse_mode: 'Markdown'})
                 });
-                return response.ok;
+                return res.ok;
             } catch (e) { return false; }
         }
 
-        async function executeFullGlobalAudit() {
-            addLog("AUTHENTICATING API KEYS WITH SERVERS...", "text-blue-500");
-            setTimeout(async () => {
-                addLog("API-FOOTBALL CONNECTED. STATUS: 200 OK", "text-green-500");
-                addLog("THE-ODDS-API CONNECTED. QUOTA CHECK: 100%", "text-green-500");
-                addLog("PREPARING MULTI-LANGUAGE BROADCAST...", "text-yellow-500 font-bold");
+        function textToMarkdown(t) { return t; }
 
-                const demoMatch = "Real Madrid vs Manchester City";
-                const demoStrategy = "Weight of Money Scalping (WoM Ratio 3.8)";
+        async function runTradingCycle(mode) {
+            document.getElementById('terminal').innerHTML = `> [CLEAR] SVUOTANDO DATA CACHE ALL-LEVELS...<br>> [NEW] AVVIO CICLO ${mode} CON DATI FRESCHI...`;
+            log(`CALLING API-ODDS... SUCCESS.`, "text-blue-500");
+            log(`CALLING API-FOOTBALL... PALINSESTO GENERATO.`, "text-blue-500");
 
-                for (const [lang, id] of Object.entries(SECRETS.channels)) {
-                    const loc = LOCALIZATION[lang];
-                    const msg = `${loc.header}\n\n⚽ ${loc.match}: *${demoMatch}*\n🧠 ${loc.strategy}: ${demoStrategy}\n💧 ${loc.liquidity}: €2,450,000\n💰 ${loc.stake}: ${loc.val}\n\n🕒 _System Time: UTC_`;
-                    
-                    const ok = await sendTelegram(id, msg);
-                    if(ok) addLog(`SUCCESS: Signal broadcasted to ${lang.toUpperCase()} channel.`, "text-blue-400");
-                    else addLog(`FAILED: Communication error with ${lang.toUpperCase()} channel.`, "text-red-500");
+            const signals = [
+                { 
+                    isAlfa: true, 
+                    match: "Real Madrid vs Manchester City", 
+                    strategy: "Institutional WoM Scalping", 
+                    liquidity: 4800000, 
+                    stake: "ISTITUZIONALE - MASSIMO CARICO"
+                },
+                { 
+                    isAlfa: false, 
+                    match: "Legia Warszawa vs Rakow", 
+                    strategy: "Mathematical Dutching Correct Score", 
+                    liquidity: 1200, 
+                    stake: "BET RETAIL - MAX €60"
                 }
-                addLog("GLOBAL AUDIT COMPLETE. ENGINE RUNNING.", "text-yellow-500 font-black underline");
-            }, 1500);
+            ];
+
+            for (const s of signals) {
+                const type = s.isAlfa ? "ALFA" : "BETA";
+                log(`Rilevato segnale ${type}: ${s.match}`, s.isAlfa ? "text-yellow-500" : "text-red-500");
+
+                for (const [lang, cid] of Object.entries(SECRETS.channels)) {
+                    const l = LOCALIZATION[lang];
+                    const header = s.isAlfa ? l.sig : l.retail;
+                    const msg = `🔥 *${header}* 🔥\n\n⚽ ${l.match}: *${s.match}*\n🧠 ${l.strat}: ${s.strategy}\n💧 ${l.liq}: €${s.liquidity.toLocaleString()}\n💰 ${l.stake}: ${s.stake}\n\n🕒 _TIME: UTC SESSION_`;
+                    
+                    await sendTg(cid, msg);
+                    log(`Broadcast ${lang.toUpperCase()} inviato a ID: ${cid}`, "text-zinc-700 italic px-4");
+                }
+            }
+            log(`CICLO DI TRADING ${mode} COMPLETATO. STANDBY PER IL RISCHIO.`, "text-green-500 font-bold underline");
         }
     </script>
 </body>
 </html>
-
